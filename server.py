@@ -37,7 +37,9 @@ def get_ip() -> str:
     return address
 
 def get_bt_addr() -> tuple[str, int]:
-    return ':'.join(re.findall('..', '%012x' % uuid.getnode()))
+    terminal_out = subprocess.check_output(["ifconfig"]).decode()
+    bt_addr_section = terminal_out.find("BD Address: ") + 12
+    return terminal_out[bt_addr_section: bt_addr_section + 15]
 
 @new_thread
 @while_true_try

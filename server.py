@@ -37,7 +37,7 @@ def get_ip() -> str:
     return address
 
 def get_bt_addr() -> tuple[str, int]:
-    return ':'.join(re.findall('..', '%012x' % uuid.getnode())).encode()
+    return ':'.join(re.findall('..', '%012x' % uuid.getnode()))
 
 @new_thread
 @while_true_try
